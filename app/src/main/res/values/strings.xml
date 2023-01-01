@@ -1,0 +1,60 @@
+<resources>
+
+    <string name="app_name">Mahdara</string>
+    <string name="app_name_arabic">المحظرة</string>
+    <string name="basmala">بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ</string>
+    <string name="arkam">٠١٢٣٤٥٦٧٨٩</string>
+    <string name="fatiha">
+        بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ (1)\n
+        الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (2)\n
+        الرَّحْمَـٰنِ الرَّحِيمِ (3)\n
+        مَالِكِ يَوْمِ الدِّينِ (4)\n
+        إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ (5)\n
+        اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (6)\n
+        صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ (7)\n
+        [ سورة الفاتحة ]
+    </string>
+    <string name="baramij">برامج</string>
+    <string name="malumat">معلومات</string>
+    <string name="sourate">السورة</string>
+    <string name="ayat">آياتها</string>
+    <string name="hizb">الجزء</string>
+    <string name="my_link">https://play.google.com/store/apps/dev?id=6030565463004791846</string>
+    <string name="positive">التواصل معنا</string>
+    <string name="neutral">تقييم أو تحديث التطبيق</string>
+    <string name="negative">الرجوع</string>
+
+    <string name="lecteur_1">القارئ سالم ولد محمد الأمين الداهن (قالون)</string>
+    <string name="lecteur_2">القارئ محمد لغظف ولد محمد سيدي (ورش)</string>
+    <string name="lecteur_3">القارئ الناجي ولد بلال (قالون)</string>
+    <string name="lecteur_4">القارئ خاجيل ولد عبد الرحمن (ورش)</string>
+    <string name="lecteur_5">القارئ سليمان ولد الرباني (ورش)</string>
+    <string name="lecteur_6">القارئ الراجل ولد عثمان (ورش)</string>
+    <string name="lecteur_7">القارئ محمد شيخنا ولد سيد الحاج (قالون)</string>
+
+    <string-array name="moujawid">
+        <item>القارئ سالم ولد محمد الأمين الداهن (قالون)</item>
+        <item>القارئ محمد لغظف ولد محمد سيدي (ورش)</item>
+        <item>القارئ الناجي ولد بلال (قالون)</item>
+        <item>القارئ خاجيل ولد عبد الرحمن (ورش)</item>
+        <item>القارئ سليمان ولد الرباني (ورش)</item>
+        <item>القارئ الراجل ولد عثمان (ورش)</item>
+        <item>القارئ شيخنا ولد سيد الحاج (قالون)</item>
+    </string-array>
+
+    <string name="help_text">
+        تطبيق المحظرة يختص بتوفير تلاوة القرآن الكريم بأصوات القراء من بلاد شنقيط. يحتوي على 7 مصاحف صوتية كاملة لأفضل القراء الموريتانيين برفقة النص مع خاصية حركة اللوح تزامنا مع الترتيل.
+        \nيمكن استخدامه لقراءة القرآن الكريم والإستماع إليه.
+        \nتقبل الله منا ومنكم صالح الأعمال.
+        \n
+    </string>
+    <string name="note_text">إضغط هنا لرؤية اللوح</string>
+    <string name="note_text_prim">إمسح هنا لإيقاف التلاوة</string>
+    <string name="exit_text">إضغط مجددا للخروج</string>
+    <string name="yes_lawh">تفعيل حركة اللوح</string>
+    <string name="no_lawh">إيقاف حركة اللوح</string>
+    <string name="no_internet">لا يوجد إنترنت</string>
+    <string name="connexion_failed">يتعذر الوصول للبيانات</string>
+    <string name="connexion_cancelled">تم إلغاء التفعيل</string>
+
+</resources>
