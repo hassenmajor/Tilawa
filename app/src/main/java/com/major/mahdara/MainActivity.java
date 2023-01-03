@@ -294,7 +294,9 @@ public class MainActivity extends AppCompatActivity {
                 string = getString(R.string.fatiha);
             else
                 string = getString(R.string.basmala) + "\n" + new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
-        } catch (IOException e) { }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (int n=100; n<300; n++)
         {
             if (string.indexOf(""+n)>-1)
@@ -416,11 +418,16 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        Notifier();
+                        handler.post(new Runnable() { public void run() {
+                            try {
+                                Notifier();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }});
                         ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
                         if (tilawa!=sourate() || tajwid!=moujawid())
                         {
-                            mediaPlayer.reset();
                             if (sourate()==1)
                                 switch (moujawid())
                                 {
@@ -447,6 +454,7 @@ public class MainActivity extends AppCompatActivity {
                                         break;
                                 }
                             else if (cm.getActiveNetworkInfo()!=null && cm.getActiveNetworkInfo().isConnectedOrConnecting()) {
+                                mediaPlayer.reset();
                                 mediaPlayer.setDataSource(liens[moujawid()-1][sourate()-1]);
                                 mediaPlayer.prepare();
                             }
@@ -463,8 +471,12 @@ public class MainActivity extends AppCompatActivity {
                             tilawa = sourate(); tajwid = moujawid();
                         }
                         handler.post(new Runnable() { public void run() {
-                            seekBar.setMax(mediaPlayer.getDuration());
-                            textEnd.setText((int) (seekBar.getMax() / (1000 * 60))+":"+(int) ((seekBar.getMax() / 1000) % 60));
+                            try {
+                                seekBar.setMax(mediaPlayer.getDuration());
+                                textEnd.setText((int) (seekBar.getMax() / (1000 * 60))+":"+(int) ((seekBar.getMax() / 1000) % 60));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }});
                         mediaPlayer.start();
                     } catch (IOException e) {
@@ -492,8 +504,14 @@ public class MainActivity extends AppCompatActivity {
     public void pauseSound(View view) {
         thread.interrupt();
         mediaPlayer.pause();
-        NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        if (manager != null) manager.cancelAll();
+        handler.post(new Runnable() { public void run() {
+            try {
+                NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                if (manager != null) manager.cancelAll();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }});
         buttonStart.setVisibility(View.VISIBLE);
         buttonPause.setVisibility(View.INVISIBLE);
     }
@@ -528,37 +546,41 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                switch (repeatNumber%4) {
-                    case 0:
-                        NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-                        if (manager != null) manager.cancelAll();
-                        break;
-                    case 1:
-                        nextElement(null);
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startSound(null);
-                            }
-                        }, 250);
-                        break;
-                    case 2:
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startSound(null);
-                            }
-                        }, 250);
-                        break;
-                    case 3:
-                        spinner.setSelection((int)(Math.random()*114), true);
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startSound(null);
-                            }
-                        }, 250);
-                        break;
+                try {
+                    switch (repeatNumber%4) {
+                        case 0:
+                            NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                            if (manager != null) manager.cancelAll();
+                            break;
+                        case 1:
+                            nextElement(null);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startSound(null);
+                                }
+                            }, 250);
+                            break;
+                        case 2:
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startSound(null);
+                                }
+                            }, 250);
+                            break;
+                        case 3:
+                            spinner.setSelection((int)(Math.random()*114), true);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startSound(null);
+                                }
+                            }, 250);
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }, (int)(0.001*seekBar.getMax()));
