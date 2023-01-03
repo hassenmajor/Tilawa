@@ -425,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }});
-                        ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
+                        //ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
                         if (tilawa!=sourate() || tajwid!=moujawid())
                         {
                             if (sourate()==1)
@@ -453,11 +453,13 @@ public class MainActivity extends AppCompatActivity {
                                         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fatiha_7);
                                         break;
                                 }
-                            else if (cm.getActiveNetworkInfo()!=null && cm.getActiveNetworkInfo().isConnectedOrConnecting()) {
+                            else //if (cm.getActiveNetworkInfo()!=null && cm.getActiveNetworkInfo().isConnectedOrConnecting())
+                            {
                                 mediaPlayer.reset();
                                 mediaPlayer.setDataSource(liens[moujawid()-1][sourate()-1]);
                                 mediaPlayer.prepare();
                             }
+                            /*
                             else {
                                 Snackbar.make(buttonStart, R.string.no_internet, Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
@@ -467,7 +469,7 @@ public class MainActivity extends AppCompatActivity {
                                 }});
                                 tilawa = -1; tajwid = -1;
                                 return;
-                            }
+                            }*/
                             tilawa = sourate(); tajwid = moujawid();
                         }
                         handler.post(new Runnable() { public void run() {
