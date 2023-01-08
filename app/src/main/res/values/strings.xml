@@ -24,22 +24,22 @@
     <string name="neutral">تقييم أو تحديث التطبيق</string>
     <string name="negative">الرجوع</string>
 
-    <string name="lecteur_1">القارئ سالم ولد محمد الأمين الداهن (قالون)</string>
+    <string name="lecteur_1">القارئ محمد شيخنا ولد سيد الحاج (قالون)</string>
     <string name="lecteur_2">القارئ محمد لغظف ولد محمد سيدي (ورش)</string>
-    <string name="lecteur_3">القارئ الناجي ولد بلال (قالون)</string>
-    <string name="lecteur_4">القارئ خاجيل ولد عبد الرحمن (ورش)</string>
-    <string name="lecteur_5">القارئ سليمان ولد الرباني (ورش)</string>
-    <string name="lecteur_6">القارئ الراجل ولد عثمان (ورش)</string>
-    <string name="lecteur_7">القارئ محمد شيخنا ولد سيد الحاج (قالون)</string>
+    <string name="lecteur_3">القارئ سالم ولد محمد الأمين الداهن (قالون)</string>
+    <string name="lecteur_4">القارئ الراجل ولد عثمان (ورش)</string>
+    <string name="lecteur_5">القارئ الناجي ولد بلال (قالون)</string>
+    <string name="lecteur_6">القارئ سليمان ولد الرباني (ورش)</string>
+    <string name="lecteur_7">القارئ خاجيل ولد عبد الرحمن (ورش)</string>
 
     <string-array name="moujawid">
-        <item>القارئ سالم ولد محمد الأمين الداهن (قالون)</item>
-        <item>القارئ محمد لغظف ولد محمد سيدي (ورش)</item>
-        <item>القارئ الناجي ولد بلال (قالون)</item>
-        <item>القارئ خاجيل ولد عبد الرحمن (ورش)</item>
-        <item>القارئ سليمان ولد الرباني (ورش)</item>
-        <item>القارئ الراجل ولد عثمان (ورش)</item>
         <item>القارئ شيخنا ولد سيد الحاج (قالون)</item>
+        <item>القارئ محمد لغظف ولد محمد سيدي (ورش)</item>
+        <item>القارئ سالم ولد محمد الأمين الداهن (قالون)</item>
+        <item>القارئ الراجل ولد عثمان (ورش)</item>
+        <item>القارئ الناجي ولد بلال (قالون)</item>
+        <item>القارئ سليمان ولد الرباني (ورش)</item>
+        <item>القارئ خاجيل ولد عبد الرحمن (ورش)</item>
     </string-array>
 
     <string name="help_text">
