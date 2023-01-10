@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
     Timer timer;
     public static MediaPlayer mediaPlayer = new MediaPlayer();
+    static String[] quran;
     static String[] parties;
     static String[] durées;
     static String[] titres;
@@ -185,10 +186,14 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         titres = null;
+        quran = null;
         try {
             stream = getAssets().open("titres.txt");
             string = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
             titres = string.split("\n");
+            stream = getAssets().open("quran.txt");
+            string = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
+            quran = string.split("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -288,18 +293,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Afficher() {
-        try {
-            stream = getAssets().open("chapitre"+File.separator+sourate()+".txt");
-            if (sourate()==1)
-                string = getString(R.string.fatiha);
-            else
-                string = getString(R.string.basmala) + "\n" + new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        string = null;
+        if (sourate()==1) {
+            string = getString(R.string.fatiha);
+            textView.setText(string);
+            return;
         }
+        else if (sourate()==9)
+            string = "\n" + quran[sourate()-1];
+        else
+            string = getString(R.string.basmala) + "\n" + quran[sourate()-1];
+        for (int n=2; n<290; n++)
+            if (string.contains("("+n+")"))
+                string = string.replace("("+n+")", "("+(n-1)+")");
+            else break;
+        string = string + " " + durées[sourate()-1];
         for (int n=100; n<300; n++)
         {
-            if (string.indexOf(""+n)>-1)
+            if (string.contains("" + n))
                 string = string.replace(String.valueOf(n), arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(2))))+""
                     +arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
                     +arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
@@ -307,13 +318,14 @@ public class MainActivity extends AppCompatActivity {
         }
         for (int n=10; n<100; n++)
         {
-            if (string.indexOf(""+n)>-1)
+            if (string.contains("" + n))
                 string = string.replace(String.valueOf(n), arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
                     +arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
             else break;
         }
         for (int i=0; i<10; i++)
             string = string.replace(i+"", arkam.charAt(i)+"");
+        string = string.replace(getString(R.string.cercle_bug), "");
         string = string.replace("(", "").replace(")", "");
         string = string.replace("[", "﴿").replace("]", "﴾");
         textView.setText(string);
@@ -425,7 +437,6 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }});
-                        //ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
                         if (tilawa!=sourate() || tajwid!=moujawid())
                         {
                             if (sourate()==1)
@@ -453,23 +464,12 @@ public class MainActivity extends AppCompatActivity {
                                         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fatiha_7);
                                         break;
                                 }
-                            else //if (cm.getActiveNetworkInfo()!=null && cm.getActiveNetworkInfo().isConnectedOrConnecting())
+                            else
                             {
                                 mediaPlayer.reset();
                                 mediaPlayer.setDataSource(liens[moujawid()-1][sourate()-1]);
                                 mediaPlayer.prepare();
                             }
-                            /*
-                            else {
-                                Snackbar.make(buttonStart, R.string.no_internet, Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
-                                handler.post(new Runnable() { public void run() {
-                                    buttonStart.setVisibility(View.VISIBLE);
-                                    buttonPause.setVisibility(View.INVISIBLE);
-                                }});
-                                tilawa = -1; tajwid = -1;
-                                return;
-                            }*/
                             tilawa = sourate(); tajwid = moujawid();
                         }
                         handler.post(new Runnable() { public void run() {
