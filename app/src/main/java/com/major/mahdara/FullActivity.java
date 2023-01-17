@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ImageView;
 
 public class FullActivity extends AppCompatActivity {
-
-    ImageView ic_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +18,7 @@ public class FullActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                Intent i = new Intent(FullActivity.this, MainActivity.class);
+                Intent i = new Intent(FullActivity.this, CentreActivity.class);
                 startActivity(i);
                 finish();
             }

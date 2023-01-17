@@ -58,6 +58,12 @@
     <string name="no_lawh">إيقاف حركة اللوح</string>
     <string name="no_internet">لا يوجد إنترنت</string>
     <string name="connexion_failed">يتعذر الوصول للبيانات</string>
-    <string name="connexion_cancelled">تم إلغاء التفعيل</string>
+    <string name="connexion_cancelled">تم إلغاء التشغيل</string>
+    <string name="title_home">التلاوة والنص</string>
+    <string name="title_person">القراء</string>
+    <string name="title_list">السور</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

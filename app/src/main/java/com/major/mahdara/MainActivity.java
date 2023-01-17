@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,7 +42,6 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -140,12 +138,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.major.mahdara")));
                             }
                         })
-                .setNegativeButton(R.string.negative,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-
-                            }
-                        });
+                .setNegativeButton(R.string.negative, null);
 
         scrollView = (ScrollView)findViewById(R.id.scrollView);
         textView = (TextView)findViewById(R.id.textView);
