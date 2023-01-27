@@ -60,8 +60,8 @@
     <string name="connexion_failed">يتعذر الوصول للبيانات</string>
     <string name="connexion_cancelled">تم إلغاء التشغيل</string>
     <string name="title_home">التلاوة والنص</string>
-    <string name="title_person">القراء</string>
-    <string name="title_list">السور</string>
+    <string name="title_person">قائمة القراء</string>
+    <string name="title_list">قائمة السور</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

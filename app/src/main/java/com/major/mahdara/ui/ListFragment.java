@@ -3,24 +3,29 @@ package com.major.mahdara.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.major.mahdara.CentreActivity;
 import com.major.mahdara.R;
+
+import java.io.InputStream;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ListFragment extends Fragment {
 
-
-    public ListFragment() {
-        // Required empty public constructor
-    }
-
+    ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,4 +34,33 @@ public class ListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        listView = (ListView)getView().findViewById(R.id.listView);
+
+        ArrayAdapter<String> a=new ArrayAdapter<String>(this.getContext(),
+                R.layout.my_spinner, CentreActivity.titres) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                ((TextView) v).setTextSize(18);
+                return v;
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                TextView v = (TextView) super.getView(position, convertView, parent);
+                v.setGravity(Gravity.RIGHT);
+                v.setPadding(20, 10, 20, 10);
+                //w.setCompoundDrawables(null, null, null, null);
+                return v;
+            }
+        };
+        a.setDropDownViewResource( R.layout.my_spinner );
+        listView.setAdapter(a);
+
+        super.onViewCreated(view, savedInstanceState);
+    }
 }
