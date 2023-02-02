@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 import com.major.mahdara.CentreActivity;
 import com.major.mahdara.R;
 
-import java.io.InputStream;
+import static com.major.mahdara.CentreActivity.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +62,20 @@ public class ListFragment extends Fragment {
         a.setDropDownViewResource( R.layout.my_spinner );
         listView.setAdapter(a);
 
-        super.onViewCreated(view, savedInstanceState);
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                chapitre = position+1;
+                try {
+                    CentreActivity.mediaPlayer.pause();
+                } catch (Exception e) { }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 }

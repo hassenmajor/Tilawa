@@ -23,4 +23,10 @@
         android:label="@string/title_person"
         tools:layout="@layout/fragment_person" />
 
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.major.mahdara.ui.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
+
 </navigation>

@@ -9,7 +9,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
-            MainActivity.mediaPlayer.pause();
+            CentreActivity.mediaPlayer.pause();
         } catch (Exception e) { }
     }
 }

@@ -6,20 +6,15 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ScrollView;
-import android.widget.SeekBar;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -42,11 +37,13 @@ public class CentreActivity extends AppCompatActivity {
     public static String[] titres;
     public static String[][] liens;
 
-    InputStream stream;
-    String string = "";
+    public static int chapitre0 = -1;
+    public static int récitateur0 = -1;
+    public static int chapitre = 1;
+    public static int récitateur = 1;
     public static Handler handler = new Handler();
-    AlertDialog.Builder helpBox;
-    private String arkam;
+    public static AlertDialog.Builder helpBox;
+    public static String arkam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +55,11 @@ public class CentreActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_list, R.id.navigation_person)
+                R.id.navigation_home, R.id.navigation_list, R.id.navigation_person, R.id.navigation_search)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
 
         helpBox = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.malumat))
@@ -85,6 +81,8 @@ public class CentreActivity extends AppCompatActivity {
         //
         arkam = getString(R.string.arkam);
 
+        String string = "";
+        InputStream stream;
         liens = new String[7][];
         try {
             stream = getAssets().open("liens1.txt");
@@ -132,6 +130,63 @@ public class CentreActivity extends AppCompatActivity {
             titres[i] = (i+1) + " - " + x[0];
         }
 
+    }
+
+    public static boolean action_checked = false;
+    Switch action_switch;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.centre_menu, menu);
+        action_switch = (Switch) menu.findItem(R.id.action_switch).getActionView();
+        action_switch.setChecked(false);
+        action_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                action_checked = isChecked;
+                if (isChecked)
+                    Toast.makeText(getApplicationContext(), R.string.yes_lawh, Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(), R.string.no_lawh, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return true;
+    }
+
+    public static int repeatNumber = 0;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_repeat:
+                repeatNumber++;
+                switch (repeatNumber%4) {
+                    case 0:
+                        item.setIcon(getResources().getDrawable(R.drawable.ic_repeat_grey));
+                        return true;
+                    case 1:
+                        item.setIcon(getResources().getDrawable(R.drawable.ic_repeat_black));
+                        return true;
+                    case 2:
+                        item.setIcon(getResources().getDrawable(R.drawable.ic_repeat_one_black));
+                        return true;
+                    case 3:
+                        item.setIcon(getResources().getDrawable(R.drawable.ic_shuffle_black));
+                        return true;
+                }
+                return super.onOptionsItemSelected(item);
+            case R.id.action_help:
+                helpBox.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void choisirRécitateur(MenuItem item) {
+        item.setChecked(true);
+        récitateur = item.getOrder();
+        if (item.getOrder() != récitateur0) mediaPlayer.pause();
     }
 
 }

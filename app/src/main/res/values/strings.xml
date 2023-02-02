@@ -62,6 +62,7 @@
     <string name="title_home">التلاوة والنص</string>
     <string name="title_person">قائمة القراء</string>
     <string name="title_list">قائمة السور</string>
+    <string name="title_search">بحث</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
