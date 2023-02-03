@@ -6,25 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import com.major.mahdara.MyBaseAdapter;
 import com.major.mahdara.R;
 
 import static com.major.mahdara.CentreActivity.*;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ListFragment extends Fragment {
 
     ListView listView;
@@ -43,6 +35,7 @@ public class ListFragment extends Fragment {
 
         MyBaseAdapter adapter = new MyBaseAdapter(this.getContext());
         listView.setAdapter(adapter);
+        listView.setSelectionFromTop(chapitre-1, 0);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,8 +48,6 @@ public class ListFragment extends Fragment {
                 getFragmentManager().popBackStack();
             }
         });
-
-        //listView.setScrollY( (chapitre-1)*(listView.getMaxScrollAmount()+listView.getHeight())/114 );
 
     }
 }

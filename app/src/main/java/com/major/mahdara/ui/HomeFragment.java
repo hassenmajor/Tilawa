@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
     ScrollView scrollView;
     SeekBar seekBar;
     Timer timer;
-    public Handler handler = new Handler();
+    Handler handler = new Handler();
     Runnable Synchroniser = new Runnable() { public void run() {
         try {
             seekBar.setMax(mediaPlayer.getDuration());
@@ -92,16 +92,13 @@ public class HomeFragment extends Fragment {
 
         buttonStart = (ImageButton)getView().findViewById(R.id.buttonStart);
         buttonPause = (ImageButton)getView().findViewById(R.id.buttonPause);
-        imagePrevious = (ImageButton)getView().findViewById(R.id.imagePrevious);
-        imageNext = (ImageButton)getView().findViewById(R.id.imageNext);
-        imageReplay = (ImageButton)getView().findViewById(R.id.imageReplay);
-        imageForward = (ImageButton)getView().findViewById(R.id.imageForward);
+        getView().findViewById(R.id.imagePrevious).setOnClickListener(onClickListener);
+        getView().findViewById(R.id.imageNext).setOnClickListener(onClickListener);
+        getView().findViewById(R.id.imageReplay).setOnClickListener(onClickListener);
+        getView().findViewById(R.id.imageForward).setOnClickListener(onClickListener);
+
         buttonStart.setOnClickListener(onClickListener);
         buttonPause.setOnClickListener(onClickListener);
-        imagePrevious.setOnClickListener(onClickListener);
-        imageNext.setOnClickListener(onClickListener);
-        imageReplay.setOnClickListener(onClickListener);
-        imageForward.setOnClickListener(onClickListener);
 
         Afficher();
         Synchroniser.run();
