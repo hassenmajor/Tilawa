@@ -1,6 +1,5 @@
 package com.major.mahdara.ui;
 
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.major.mahdara.CentreActivity;
+import com.major.mahdara.MyBaseAdapter;
 import com.major.mahdara.R;
 
 import static com.major.mahdara.CentreActivity.*;
@@ -40,42 +41,22 @@ public class ListFragment extends Fragment {
 
         listView = (ListView)getView().findViewById(R.id.listView);
 
-        ArrayAdapter<String> a=new ArrayAdapter<String>(this.getContext(),
-                R.layout.my_spinner, CentreActivity.titres) {
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View v = super.getView(position, convertView, parent);
-                ((TextView) v).setTextSize(18);
-                return v;
-            }
+        MyBaseAdapter adapter = new MyBaseAdapter(this.getContext());
+        listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                TextView v = (TextView) super.getView(position, convertView, parent);
-                v.setGravity(Gravity.RIGHT);
-                v.setPadding(20, 10, 20, 10);
-                //w.setCompoundDrawables(null, null, null, null);
-                return v;
-            }
-        };
-        a.setDropDownViewResource( R.layout.my_spinner );
-        listView.setAdapter(a);
-
-        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view.setBackground(listView.getBackground());
                 chapitre = position+1;
-                try {
-                    CentreActivity.mediaPlayer.pause();
-                } catch (Exception e) { }
-            }
+                if (chapitre!=chapitre0) mediaPlayer.pause();
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+                //getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment()).commit();
+                getFragmentManager().popBackStack();
             }
         });
+
+        //listView.setScrollY( (chapitre-1)*(listView.getMaxScrollAmount()+listView.getHeight())/114 );
 
     }
 }

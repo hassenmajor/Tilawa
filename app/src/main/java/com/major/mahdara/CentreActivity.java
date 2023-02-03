@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +32,7 @@ public class CentreActivity extends AppCompatActivity {
     public static MediaPlayer mediaPlayer = new MediaPlayer();
     public static String[] quran;
     public static String[] parties;
-    public static String[] durées;
+    public static String[] versets;
     public static String[] titres;
     public static String[][] liens;
 
@@ -41,7 +40,6 @@ public class CentreActivity extends AppCompatActivity {
     public static int récitateur0 = -1;
     public static int chapitre = 1;
     public static int récitateur = 1;
-    public static Handler handler = new Handler();
     public static AlertDialog.Builder helpBox;
     public static String arkam;
 
@@ -121,13 +119,13 @@ public class CentreActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        durées = new String[titres.length];
+        versets = new String[titres.length];
         parties = new String[titres.length];
         for (int i=0; i<titres.length; i++) {
             String x[] = titres[i].split(";");
             parties[i] = x[2];
-            durées[i] = x[1];
-            titres[i] = (i+1) + " - " + x[0];
+            versets[i] = x[1];
+            titres[i] = x[0];
         }
 
     }
@@ -186,7 +184,7 @@ public class CentreActivity extends AppCompatActivity {
     public void choisirRécitateur(MenuItem item) {
         item.setChecked(true);
         récitateur = item.getOrder();
-        if (item.getOrder() != récitateur0) mediaPlayer.pause();
+        if (récitateur!=récitateur0) mediaPlayer.pause();
     }
 
 }

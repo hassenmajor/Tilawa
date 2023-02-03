@@ -22,7 +22,6 @@
             android:layout_alignParentTop="true"
             android:layout_above="@id/soundLayout"
             android:foregroundGravity="center"
-            android:onClick="replaySound"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_replay_black" />
 
@@ -35,7 +34,6 @@
             android:layout_alignParentTop="true"
             android:layout_above="@id/soundLayout"
             android:foregroundGravity="center"
-            android:onClick="forwardSound"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_forward_black" />
 
@@ -57,21 +55,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/spinner"
-                android:onClick="previousElement"
+                android:layout_toLeftOf="@id/textChapitre"
                 android:background="@android:color/transparent"
                 app:srcCompat="@drawable/ic_previous_black" />
 
-            <Spinner
-                android:id="@+id/spinner"
+            <TextView
+                android:id="@+id/textChapitre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog"
-                android:entries="@array/titres"
                 android:background="@android:color/transparent"
                 android:layout_toLeftOf="@id/imageNext"
-                android:popupBackground="@drawable/popup_style"
-                android:popupTheme="@style/Widget.AppCompat.Light.ListPopupWindow"
+                android:fontFamily="@font/amiri_regular"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:gravity="center"
                 android:minWidth="160dp"
                 android:minHeight="45dp" />
 
@@ -81,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_centerVertical="true"
-                android:onClick="nextElement"
                 android:background="@android:color/transparent"
                 app:srcCompat="@drawable/ic_next_black" />
 

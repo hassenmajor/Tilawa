@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,41 @@ import static com.major.mahdara.CentreActivity.*;
 
 public class HomeFragment extends Fragment {
 
-    TextView textView, textStart, textEnd, textVerset, textPartie;
-    Spinner spinner;
-    ImageButton buttonStart, buttonPause;
+    TextView textView, textStart, textEnd, textVerset, textPartie, textChapitre;
+    ImageButton buttonStart, buttonPause, imageNext, imagePrevious, imageReplay, imageForward;
     ScrollView scrollView;
     SeekBar seekBar;
     Timer timer;
+    public Handler handler = new Handler();
+    Runnable Synchroniser = new Runnable() { public void run() {
+        try {
+            seekBar.setMax(mediaPlayer.getDuration());
+            textEnd.setText((int) (seekBar.getMax() / (1000 * 60))+":"+(int) ((seekBar.getMax() / 1000) % 60));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } };
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId())
+            {
+                case R.id.buttonStart:
+                    startSound(); break;
+                case R.id.buttonPause:
+                    pauseSound(); break;
+                case R.id.imagePrevious:
+                    previousElement(); break;
+                case R.id.imageNext:
+                    nextElement(); break;
+                case R.id.imageReplay:
+                    replaySound(); break;
+                case R.id.imageForward:
+                    forwardSound(); break;
+            }
+        }
+    };
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,40 +87,26 @@ public class HomeFragment extends Fragment {
         textVerset = (TextView)getView().findViewById(R.id.textVerset);
         textStart = (TextView)getView().findViewById(R.id.textStart);
         textEnd = (TextView)getView().findViewById(R.id.textEnd);
-        spinner = (Spinner)getView().findViewById(R.id.spinner);
-        buttonStart = (ImageButton)getView().findViewById(R.id.buttonStart);
-        buttonPause = (ImageButton)getView().findViewById(R.id.buttonPause);
+        textChapitre = (TextView)getView().findViewById(R.id.textChapitre);
         seekBar = (SeekBar)getView().findViewById(R.id.seekBar);
 
-        buttonStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startSound(v);
-            }
-        });
+        buttonStart = (ImageButton)getView().findViewById(R.id.buttonStart);
+        buttonPause = (ImageButton)getView().findViewById(R.id.buttonPause);
+        imagePrevious = (ImageButton)getView().findViewById(R.id.imagePrevious);
+        imageNext = (ImageButton)getView().findViewById(R.id.imageNext);
+        imageReplay = (ImageButton)getView().findViewById(R.id.imageReplay);
+        imageForward = (ImageButton)getView().findViewById(R.id.imageForward);
+        buttonStart.setOnClickListener(onClickListener);
+        buttonPause.setOnClickListener(onClickListener);
+        imagePrevious.setOnClickListener(onClickListener);
+        imageNext.setOnClickListener(onClickListener);
+        imageReplay.setOnClickListener(onClickListener);
+        imageForward.setOnClickListener(onClickListener);
 
-        buttonPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pauseSound(v);
-            }
-        });
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                récitateur = position+1;
-                Afficher();
-                scrollView.setScrollY(0);
-                textVerset.setText(getString(R.string.ayat)+"\n"+durées[position]);
-                textPartie.setText(getString(R.string.hizb)+"\n"+parties[position]);
-                pauseSound(null);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        Afficher();
+        Synchroniser.run();
+        Synchroniser();
+        Synchroniser(mediaPlayer.isPlaying());
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -98,8 +114,7 @@ public class HomeFragment extends Fragment {
                 textStart.setText((int) (progress / (1000 * 60))+":"+(int) ((progress / 1000) % 60));
                 if ( !fromUser && (progress>=0.999*seekBar.getMax()) )
                 {
-                    buttonStart.setVisibility(View.VISIBLE);
-                    buttonPause.setVisibility(View.INVISIBLE);
+                    Synchroniser(false);
                     endOperation();
                 }
                 if (action_checked) {
@@ -138,8 +153,20 @@ public class HomeFragment extends Fragment {
             seekBar.setProgress(mediaPlayer.getCurrentPosition());
         } catch (Exception e) { }
     }
+    private void Synchroniser(boolean isPlaying) {
+        if (isPlaying) {
+            buttonPause.setVisibility(View.VISIBLE);
+            buttonStart.setVisibility(View.INVISIBLE);
+        } else {
+            buttonStart.setVisibility(View.VISIBLE);
+            buttonPause.setVisibility(View.INVISIBLE);
+        }
+    }
 
     private void Afficher() {
+        textChapitre.setText(titres[chapitre-1]);
+        textVerset.setText(getString(R.string.ayat)+"\n"+versets[chapitre-1]);
+        textPartie.setText(getString(R.string.hizb)+"\n"+parties[chapitre-1]);
         String string;
         if (chapitre==1) {
             string = getString(R.string.fatiha);
@@ -154,7 +181,7 @@ public class HomeFragment extends Fragment {
             if (string.contains("("+n+")"))
                 string = string.replace("("+n+")", "("+(n-1)+")");
             else break;
-        string = string + " " + durées[chapitre-1];
+        string = string + " " + versets[chapitre-1];
         for (int n=100; n<300; n++)
         {
             if (string.contains("" + n))
@@ -209,9 +236,8 @@ public class HomeFragment extends Fragment {
     }
 
     Thread thread = new Thread();
-    public void startSound(View view) {
-        buttonPause.setVisibility(View.VISIBLE);
-        buttonStart.setVisibility(View.INVISIBLE);
+    public void startSound() {
+        Synchroniser(true);
         if (!thread.isAlive()) {
             thread = new Thread(new Runnable() {
                 @Override
@@ -259,29 +285,20 @@ public class HomeFragment extends Fragment {
                             }
                             chapitre0 = chapitre; récitateur0 = récitateur;
                         }
-                        handler.post(new Runnable() { public void run() {
-                            try {
-                                seekBar.setMax(mediaPlayer.getDuration());
-                                textEnd.setText((int) (seekBar.getMax() / (1000 * 60))+":"+(int) ((seekBar.getMax() / 1000) % 60));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }});
+                        handler.post(Synchroniser);
                         mediaPlayer.start();
                     } catch (IOException e) {
                         Snackbar.make(buttonStart, R.string.connexion_failed, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                         handler.post(new Runnable() { public void run() {
-                            buttonStart.setVisibility(View.VISIBLE);
-                            buttonPause.setVisibility(View.INVISIBLE);
+                            Synchroniser(false);
                         }});
                         chapitre0 = -1; récitateur0 = -1;
                     } catch (Exception e) {
                         Snackbar.make(buttonStart, R.string.connexion_cancelled, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                         handler.post(new Runnable() { public void run() {
-                            buttonStart.setVisibility(View.VISIBLE);
-                            buttonPause.setVisibility(View.INVISIBLE);
+                            Synchroniser(false);
                         }});
                         chapitre0 = -1; récitateur0 = -1;
                     }
@@ -290,7 +307,7 @@ public class HomeFragment extends Fragment {
             thread.start();
         }
     }
-    public void pauseSound(View view) {
+    public void pauseSound() {
         thread.interrupt();
         mediaPlayer.pause();
         handler.post(new Runnable() { public void run() {
@@ -301,31 +318,42 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }});
-        buttonStart.setVisibility(View.VISIBLE);
-        buttonPause.setVisibility(View.INVISIBLE);
+        Synchroniser(false);
     }
 
-    public void previousElement(View view) {
+    public void previousElement() {
         if (chapitre==1)
-            spinner.setSelection(113, true);
+            chapitre=114;
         else
-            spinner.setSelection(spinner.getSelectedItemPosition()-1, true);
+            chapitre--;
+        mediaPlayer.pause();
+        Synchroniser(false);
+        Afficher();
     }
-    public void nextElement(View view) {
+    public void nextElement() {
         if (chapitre==114)
-            spinner.setSelection(0, true);
+            chapitre=1;
         else
-            spinner.setSelection(spinner.getSelectedItemPosition()+1, true);
+            chapitre++;
+        mediaPlayer.pause();
+        Synchroniser(false);
+        Afficher();
+    }
+    public void randomElement() {
+        chapitre = (int)(Math.random()*114);
+        mediaPlayer.pause();
+        Synchroniser(false);
+        Afficher();
     }
 
-    public void replaySound(View view) {
+    public void replaySound() {
         try {
             mediaPlayer.seekTo(mediaPlayer.getCurrentPosition()-10000);
             Synchroniser();
         } catch (Exception e) { }
     }
 
-    public void forwardSound(View view) {
+    public void forwardSound() {
         try {
             mediaPlayer.seekTo(mediaPlayer.getCurrentPosition()+10000);
             Synchroniser();
@@ -343,11 +371,11 @@ public class HomeFragment extends Fragment {
                             if (manager != null) manager.cancelAll();
                             break;
                         case 1:
-                            nextElement(null);
+                            nextElement();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    startSound(null);
+                                    startSound();
                                 }
                             }, 250);
                             break;
@@ -355,16 +383,16 @@ public class HomeFragment extends Fragment {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    startSound(null);
+                                    startSound();
                                 }
                             }, 250);
                             break;
                         case 3:
-                            spinner.setSelection((int)(Math.random()*114), true);
+                            randomElement();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    startSound(null);
+                                    startSound();
                                 }
                             }, 250);
                             break;
