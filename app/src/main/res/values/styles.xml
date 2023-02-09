@@ -9,7 +9,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/andalus_regular</item>
     </style>
 
     <style name="AppTheme.DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -26,6 +25,10 @@
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style>
 
-    <color name="couleurLawh">#FFE499</color>
+    <color name="couleurTable">#FFE499</color>
+    <color name="couleurBordure">#A59756</color>
     <color name="couleurFont">#F1F5FB</color>
+    <color name="couleurArriere">#CBEDD5</color>
+    <color name="couleurContraste">#62B6B7</color>
+
 </resources>

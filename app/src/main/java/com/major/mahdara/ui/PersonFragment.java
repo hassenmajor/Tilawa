@@ -11,10 +11,6 @@ import android.view.ViewGroup;
 
 import com.major.mahdara.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PersonFragment extends Fragment {
 
     public PersonFragment() {

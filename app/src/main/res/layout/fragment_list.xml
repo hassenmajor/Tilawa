@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/couleurFont"
-        android:listSelector="@color/black_overlay"
         android:dividerHeight="2dp"
-        android:divider="@color/colorAccent" />
+        android:divider="@color/couleurContraste" />
 
 </FrameLayout>

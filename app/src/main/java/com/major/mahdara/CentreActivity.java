@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 public class CentreActivity extends AppCompatActivity {
 
     public static MediaPlayer mediaPlayer = new MediaPlayer();
+    public static String[][] simpleQuran;
     public static String[] quran;
     public static String[] parties;
     public static String[] versets;
@@ -41,7 +42,7 @@ public class CentreActivity extends AppCompatActivity {
     public static int chapitre = 1;
     public static int récitateur = 1;
     public static AlertDialog.Builder helpBox;
-    public static String arkam;
+    public static String nombreArabe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class CentreActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        nombreArabe = getString(R.string.arkam);
         helpBox = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.malumat))
                 .setMessage(R.string.help_text)
@@ -75,9 +77,6 @@ public class CentreActivity extends AppCompatActivity {
                             }
                         })
                 .setNegativeButton(R.string.negative, null);
-
-        //
-        arkam = getString(R.string.arkam);
 
         String string = "";
         InputStream stream;
@@ -136,7 +135,7 @@ public class CentreActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.centre_menu, menu);
         action_switch = (Switch) menu.findItem(R.id.action_switch).getActionView();
-        action_switch.setChecked(false);
+        action_switch.setChecked(action_checked);
         action_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -147,7 +146,20 @@ public class CentreActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.no_lawh, Toast.LENGTH_SHORT).show();
             }
         });
-
+        switch (repeatNumber%4) {
+            case 0:
+                menu.findItem(R.id.action_repeat).setIcon(R.drawable.ic_repeat_grey);
+                return true;
+            case 1:
+                menu.findItem(R.id.action_repeat).setIcon(R.drawable.ic_repeat_black);
+                return true;
+            case 2:
+                menu.findItem(R.id.action_repeat).setIcon(R.drawable.ic_repeat_one_black);
+                return true;
+            case 3:
+                menu.findItem(R.id.action_repeat).setIcon(R.drawable.ic_shuffle_black);
+                return true;
+        }
         return true;
     }
 
@@ -160,16 +172,16 @@ public class CentreActivity extends AppCompatActivity {
                 repeatNumber++;
                 switch (repeatNumber%4) {
                     case 0:
-                        item.setIcon(getResources().getDrawable(R.drawable.ic_repeat_grey));
+                        item.setIcon(R.drawable.ic_repeat_grey);
                         return true;
                     case 1:
-                        item.setIcon(getResources().getDrawable(R.drawable.ic_repeat_black));
+                        item.setIcon(R.drawable.ic_repeat_black);
                         return true;
                     case 2:
-                        item.setIcon(getResources().getDrawable(R.drawable.ic_repeat_one_black));
+                        item.setIcon(R.drawable.ic_repeat_one_black);
                         return true;
                     case 3:
-                        item.setIcon(getResources().getDrawable(R.drawable.ic_shuffle_black));
+                        item.setIcon(R.drawable.ic_shuffle_black);
                         return true;
                 }
                 return super.onOptionsItemSelected(item);

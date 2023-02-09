@@ -4,9 +4,9 @@
 
     <stroke
         android:width="3dp"
-        android:color="#A59756"/>
+        android:color="@color/couleurBordure"/>
     <solid
-        android:color="#FFE499"/>
+        android:color="@color/couleurTable"/>
     <corners
         android:topLeftRadius="160dp"
         android:topRightRadius="160dp"

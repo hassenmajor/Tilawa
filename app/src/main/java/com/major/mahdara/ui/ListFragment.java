@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.major.mahdara.MyBaseAdapter;
+import com.major.mahdara.MyListAdapter;
 import com.major.mahdara.R;
 
 import static com.major.mahdara.CentreActivity.*;
@@ -33,7 +33,7 @@ public class ListFragment extends Fragment {
 
         listView = (ListView)getView().findViewById(R.id.listView);
 
-        MyBaseAdapter adapter = new MyBaseAdapter(this.getContext());
+        MyListAdapter adapter = new MyListAdapter(this.getContext());
         listView.setAdapter(adapter);
         listView.setSelectionFromTop(chapitre-1, 0);
 

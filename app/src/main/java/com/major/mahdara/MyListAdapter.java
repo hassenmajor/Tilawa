@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class MyBaseAdapter extends BaseAdapter {
+public class MyListAdapter extends BaseAdapter {
 
     Context context;
     LayoutInflater inflater;
 
-    public MyBaseAdapter(Context context) {
+    public MyListAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
@@ -34,7 +34,7 @@ public class MyBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        view = inflater.inflate(R.layout.listview_item, null);
+        view = inflater.inflate(R.layout.my_list_item, null);
 
         TextView itemView = (TextView)view.findViewById(R.id.itemView);
         TextView itemView0 = (TextView)view.findViewById(R.id.itemView0);

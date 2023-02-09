@@ -161,7 +161,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void Afficher() {
-        textChapitre.setText(titres[chapitre-1]);
+        textChapitre.setText("﴿ "+titres[chapitre-1]+" ﴾");
         textVerset.setText(getString(R.string.ayat)+"\n"+versets[chapitre-1]);
         textPartie.setText(getString(R.string.hizb)+"\n"+parties[chapitre-1]);
         String string;
@@ -182,20 +182,20 @@ public class HomeFragment extends Fragment {
         for (int n=100; n<300; n++)
         {
             if (string.contains("" + n))
-                string = string.replace(String.valueOf(n), arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(2))))+""
-                        +arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
-                        +arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
+                string = string.replace(String.valueOf(n), nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(2))))+""
+                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
+                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
             else break;
         }
         for (int n=10; n<100; n++)
         {
             if (string.contains("" + n))
-                string = string.replace(String.valueOf(n), arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
-                        +arkam.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
+                string = string.replace(String.valueOf(n), nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
+                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
             else break;
         }
         for (int i=0; i<10; i++)
-            string = string.replace(i+"", arkam.charAt(i)+"");
+            string = string.replace(i+"", nombreArabe.charAt(i)+"");
         string = string.replace(getString(R.string.cercle_bug), "");
         string = string.replace("(", "").replace(")", "");
         string = string.replace("[", "﴿").replace("]", "﴾");

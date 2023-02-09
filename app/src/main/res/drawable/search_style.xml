@@ -5,10 +5,6 @@
     <solid
         android:color="@color/couleurArriere"/>
     <corners
-        android:topLeftRadius="20dp"
-        android:topRightRadius="20dp"/>
-    <stroke
-        android:width="2dp"
-        android:color="@color/couleurContraste"/>
+        android:radius="10dp"/>
     
 </shape>
