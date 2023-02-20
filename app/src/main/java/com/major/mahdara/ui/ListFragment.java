@@ -43,8 +43,6 @@ public class ListFragment extends Fragment {
                 view.setBackground(listView.getBackground());
                 chapitre = position+1;
                 if (chapitre!=chapitre0) mediaPlayer.pause();
-
-                //getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment()).commit();
                 getFragmentManager().popBackStack();
             }
         });

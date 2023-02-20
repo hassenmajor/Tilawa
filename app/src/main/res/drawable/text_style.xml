@@ -2,9 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <stroke
+    <!--stroke
         android:width="3dp"
-        android:color="@color/couleurBordure"/>
+        android:color="@color/couleurBordure"/-->
     <solid
         android:color="@color/couleurTable"/>
     <corners
@@ -12,10 +12,5 @@
         android:topRightRadius="160dp"
         android:bottomLeftRadius="3dp"
         android:bottomRightRadius="3dp"/>
-    <!--gradient
-        android:type="radial"
-        android:gradientRadius="500dp"
-        android:startColor="#FFE463"
-        android:endColor="#DEC35C"/-->
     
 </shape>

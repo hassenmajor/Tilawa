@@ -39,10 +39,33 @@ public class CentreActivity extends AppCompatActivity {
 
     public static int chapitre0 = -1;
     public static int récitateur0 = -1;
+    public static int verset = 0;
     public static int chapitre = 1;
     public static int récitateur = 1;
     public static AlertDialog.Builder helpBox;
+    public static String nombreIndien;
     public static String nombreArabe;
+    public static String nombreArabe(String string)
+    {
+        for (int n=100; n<300; n++)
+        {
+            if (string.contains("" + n))
+                string = string.replace(String.valueOf(n), nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(2))))+""
+                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
+                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
+            else break;
+        }
+        for (int n=10; n<100; n++)
+        {
+            if (string.contains("" + n))
+                string = string.replace(String.valueOf(n), nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
+                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
+            else break;
+        }
+        for (int i=0; i<10; i++)
+            string = string.replace(i+"", nombreArabe.charAt(i)+"");
+        return string;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +84,7 @@ public class CentreActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         nombreArabe = getString(R.string.arkam);
+        nombreIndien = "0123456789";
         helpBox = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.malumat))
                 .setMessage(R.string.help_text)
@@ -112,7 +136,7 @@ public class CentreActivity extends AppCompatActivity {
             stream = getAssets().open("titres.txt");
             string = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
             titres = string.split("\n");
-            stream = getAssets().open("quran.txt");
+            stream = getAssets().open("quran-affichage.txt");
             string = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
             quran = string.split("\n");
         } catch (IOException e) {

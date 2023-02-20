@@ -1,201 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/couleurFont"
     tools:context=".ui.HomeFragment">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/couleurFont">
+        android:id="@+id/relativeLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layoutDirection="ltr"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/imageReplay"
             android:layout_width="wrap_content"
-            android:layoutDirection="ltr"
-            android:padding="5dp"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
             android:background="@android:color/transparent"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
+            app:srcCompat="@drawable/ic_replay_black" />
 
-            <ImageButton
-                android:id="@+id/imageReplay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_replay_black" />
-
-            <ImageButton
-                android:id="@+id/imagePrevious"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/imageReplay"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_previous_black" />
-
-            <ImageButton
-                android:id="@+id/buttonStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="visible"
-                android:padding="5dp"
-                android:layout_toEndOf="@id/imagePrevious"
-                android:background="@drawable/popup_style"
-                app:srcCompat="@drawable/ic_play_black" />
-
-            <ImageButton
-                android:id="@+id/buttonPause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="invisible"
-                android:padding="5dp"
-                android:layout_toEndOf="@id/imagePrevious"
-                android:background="@drawable/popup_style"
-                app:srcCompat="@drawable/ic_pause_black" />
-
-            <ImageButton
-                android:id="@+id/imageNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/buttonStart"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_next_black" />
-
-            <ImageButton
-                android:id="@+id/imageForward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/imageNext"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_forward_black" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/soundLayout"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/imagePrevious"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            android:layoutDirection="ltr"
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imageReplay"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_previous_black" />
+
+        <ImageButton
+            android:id="@+id/buttonStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
             android:padding="5dp"
-            android:layout_above="@id/relativeLayout">
+            android:layout_toEndOf="@id/imagePrevious"
+            android:background="@drawable/popup_style"
+            app:srcCompat="@drawable/ic_play_black" />
 
-            <TextView
-                android:id="@+id/textChapitre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/amiri_regular"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:minWidth="160dp" />
-
-            <SeekBar
-                android:id="@+id/seekBar"
-                style="@style/Widget.AppCompat.SeekBar"
-                android:layout_below="@id/textChapitre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="1000"
-                android:progress="0" />
-
-            <TextView
-                android:id="@+id/textStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/white"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="--:--" />
-
-            <TextView
-                android:id="@+id/textEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/white"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="--:--" />
-
-        </RelativeLayout>
-
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/buttonPause"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:layout_above="@id/soundLayout"
-            android:background="@drawable/text_style"
-            android:layout_alignParentTop="true">
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:padding="5dp"
+            android:layout_toEndOf="@id/imagePrevious"
+            android:background="@drawable/popup_style"
+            app:srcCompat="@drawable/ic_pause_black" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="2sp"
-                android:fontFamily="@font/uthmanic_hafs_v20"
-                android:text="@string/basmala"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="26sp" />
+        <ImageButton
+            android:id="@+id/imageNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/buttonStart"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_next_black" />
 
-        </ScrollView>
-
-        <TextView
-            android:id="@+id/textVerset"
+        <ImageButton
+            android:id="@+id/imageForward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:fontFamily="@font/amiri_regular"
-            android:lineSpacingExtra="0sp"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:textColor="@android:color/black"
-            android:text="@string/ayat" />
-
-        <TextView
-            android:id="@+id/textPartie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:fontFamily="@font/amiri_regular"
-            android:lineSpacingExtra="0sp"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:textColor="@android:color/black"
-            android:text="@string/hizb" />
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imageNext"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_forward_black" />
 
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/soundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:layoutDirection="ltr"
+        android:padding="5dp"
+        android:layout_above="@id/relativeLayout">
+
+        <TextView
+            android:id="@+id/textChapitre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/amiri_regular"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:minWidth="160dp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar"
+            android:layout_below="@id/textChapitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="1000"
+            android:progress="0" />
+
+        <TextView
+            android:id="@+id/textStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/white"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="--:--" />
+
+        <TextView
+            android:id="@+id/textEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="--:--" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingTop="50dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:layout_above="@id/soundLayout"
+        android:elevation="10dp"
+        android:clipChildren="true"
+        android:background="@drawable/text_style"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2sp"
+            android:fontFamily="@font/uthmanic_hafs_v20"
+            android:text="@string/basmala"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="26sp" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textVerset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/amiri_regular"
+        android:lineSpacingExtra="0sp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@android:color/black"
+        android:text="@string/ayat" />
+
+    <TextView
+        android:id="@+id/textPartie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/amiri_regular"
+        android:lineSpacingExtra="0sp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@android:color/black"
+        android:text="@string/hizb" />
+
+</RelativeLayout>

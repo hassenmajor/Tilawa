@@ -6,13 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.major.mahdara.MySearchAdapter;
 import com.major.mahdara.R;
@@ -24,7 +24,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static com.major.mahdara.CentreActivity.simpleQuran;
+import static com.major.mahdara.CentreActivity.*;
 
 public class SearchFragment extends Fragment {
 
@@ -54,19 +54,26 @@ public class SearchFragment extends Fragment {
         searchList.setAdapter(adapter);
 
         try {
-            stream = getActivity().getAssets().open("LaVache.txt");
+            stream = getActivity().getAssets().open("quran-recherche.txt");
             string = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
-            simpleQuran = new String[1][];
-            simpleQuran[0] = string.split("\n");
+            String[] tableau = string.split("\n\n");
+            simpleQuran = new String[114][];
+            for (int i=0; i<simpleQuran.length; i++)
+                simpleQuran[i] = tableau[i].split("\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    SearchFragment.this.query = query;
-                    searchText();
-                    return true;
+                    if (query.length()>1)
+                    {
+                        SearchFragment.query = query;
+                        searchText();
+                        return true;
+                    }
+                    else
+                        return false;
                 }
 
                 @Override
@@ -75,6 +82,18 @@ public class SearchFragment extends Fragment {
                 }
             });
         }
+
+        searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                view.setBackground(searchList.getBackground());
+                chapitre = Integer.valueOf(list.get(position).split(";")[0]);
+                verset = Integer.valueOf(list.get(position).split(";")[1]);
+                if (chapitre!=chapitre0) mediaPlayer.pause();
+                getFragmentManager().popBackStack();
+            }
+        });
     }
 
     private void searchText() {

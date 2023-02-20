@@ -4,17 +4,22 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Outline;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -100,6 +105,19 @@ public class HomeFragment extends Fragment {
         buttonStart.setOnClickListener(onClickListener);
         buttonPause.setOnClickListener(onClickListener);
 
+        ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                float cornerRadius = TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        160f,
+                        getResources().getDisplayMetrics());
+                outline.setRoundRect(0, 0, view.getWidth(), 10*view.getHeight(), cornerRadius);
+            }
+        };
+        scrollView.setOutlineProvider(viewOutlineProvider);
+        scrollView.setClipToOutline(true);
+
         Afficher();
         Synchroniser.run();
         Synchroniser();
@@ -160,6 +178,30 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void Colorer(String text)
+    {
+        if (verset==0) return;
+        SpannableString span = new SpannableString(textView.getText().toString());
+        int i = 0;
+        int indice = text.indexOf(" "+verset+" ");
+        if (indice>-1)
+        {
+            String x = " "+(verset-1)+" ";
+            if (verset>1)
+                i = text.indexOf(x)+x.length();
+            else
+                i = getString(R.string.basmala).length();
+            span.setSpan(new ForegroundColorSpan(Color.BLUE), i, indice, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        textView.setText(span, TextView.BufferType.SPANNABLE);
+        verset = 0;
+        //
+        double a = ((i+indice)/2.0)/text.length();
+        double h = scrollView.getHeight()-scrollView.getPaddingTop()-scrollView.getPaddingEnd();
+        double H = (textView.getHeight()*a)-h/2;
+        scrollView.setScrollY( (int)H );
+    }
+
     private void Afficher() {
         textChapitre.setText("﴿ "+titres[chapitre-1]+" ﴾");
         textVerset.setText(getString(R.string.ayat)+"\n"+versets[chapitre-1]);
@@ -178,28 +220,18 @@ public class HomeFragment extends Fragment {
             if (string.contains("("+n+")"))
                 string = string.replace("("+n+")", "("+(n-1)+")");
             else break;
-        string = string + " " + versets[chapitre-1];
-        for (int n=100; n<300; n++)
-        {
-            if (string.contains("" + n))
-                string = string.replace(String.valueOf(n), nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(2))))+""
-                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
-                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
-            else break;
-        }
-        for (int n=10; n<100; n++)
-        {
-            if (string.contains("" + n))
-                string = string.replace(String.valueOf(n), nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(1))))+""
-                        +nombreArabe.charAt(Integer.valueOf(String.valueOf((""+n).charAt(0)))));
-            else break;
-        }
-        for (int i=0; i<10; i++)
-            string = string.replace(i+"", nombreArabe.charAt(i)+"");
         string = string.replace(getString(R.string.cercle_bug), "");
         string = string.replace("(", "").replace(")", "");
-        string = string.replace("[", "﴿").replace("]", "﴾");
+        string = string + " " + versets[chapitre-1] + " ";
+        final String text = string;
+        string = nombreArabe(string);
         textView.setText(string);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Colorer(text);
+            }
+        }, 500);
     }
 
     NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), "channel_id");
