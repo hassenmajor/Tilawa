@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment {
     private void Colorer(String text)
     {
         if (verset==0) return;
-        SpannableString span = new SpannableString(textView.getText().toString());
+        SpannableString spannable = new SpannableString(textView.getText().toString());
         int i = 0;
         int indice = text.indexOf(" "+verset+" ");
         if (indice>-1)
@@ -191,9 +191,9 @@ public class HomeFragment extends Fragment {
                 i = text.indexOf(x)+x.length();
             else
                 i = getString(R.string.basmala).length();
-            span.setSpan(new ForegroundColorSpan(Color.BLUE), i, indice, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new ForegroundColorSpan(Color.BLUE), i, indice, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-        textView.setText(span, TextView.BufferType.SPANNABLE);
+        textView.setText(spannable, TextView.BufferType.SPANNABLE);
         verset = 0;
         //
         double a = ((i+indice)/2.0)/text.length();

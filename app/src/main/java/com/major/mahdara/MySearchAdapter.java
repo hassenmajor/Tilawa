@@ -1,6 +1,12 @@
 package com.major.mahdara;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import static com.major.mahdara.ui.SearchFragment.query;
 
 public class MySearchAdapter extends BaseAdapter {
 
@@ -55,6 +63,16 @@ public class MySearchAdapter extends BaseAdapter {
         itemView.setTextSize(20);
         itemView0.setText("("+list.get(position)+")");
         itemView0.setTextSize(12);
+        //
+        String x = itemView.getText().toString();
+        SpannableString spannable = new SpannableString(x);
+        int indice = x.indexOf(query);
+        if (indice>-1)
+        {
+            spannable.setSpan(new StyleSpan(Typeface.BOLD), indice, indice+query.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new ForegroundColorSpan(Color.RED), indice, indice+query.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        itemView.setText(spannable, TextView.BufferType.SPANNABLE);
 
         return view;
     }

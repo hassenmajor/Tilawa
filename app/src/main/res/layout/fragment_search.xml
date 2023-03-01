@@ -3,16 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
     tools:context=".ui.SearchFragment">
 
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
         android:fontFamily="sans-serif"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/couleurContraste"
+        android:layout_below="@id/searchView" />
 
     <ListView
         android:id="@+id/searchList"
@@ -22,7 +30,7 @@
         android:background="@color/couleurFont"
         android:dividerHeight="10dp"
         android:divider="@color/couleurFont"
-        android:layout_below="@id/searchView"
+        android:layout_below="@id/frameLayout"
         android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

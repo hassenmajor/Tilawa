@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.major.mahdara.MySearchAdapter;
 import com.major.mahdara.R;
@@ -32,7 +31,8 @@ public class SearchFragment extends Fragment {
     ListView searchList;
     MySearchAdapter adapter;
     static ArrayList<String> list = new ArrayList<>();
-    static String query = "";
+    static int position = 0;
+    public static String query = "";
 
     String string = "";
     InputStream stream;
@@ -52,6 +52,7 @@ public class SearchFragment extends Fragment {
         searchList = (ListView)view.findViewById(R.id.searchList);
         adapter = new MySearchAdapter(this.getContext(), list);
         searchList.setAdapter(adapter);
+        searchList.setSelectionFromTop(position, 0);
 
         try {
             stream = getActivity().getAssets().open("quran-recherche.txt");
@@ -86,10 +87,10 @@ public class SearchFragment extends Fragment {
         searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 view.setBackground(searchList.getBackground());
                 chapitre = Integer.valueOf(list.get(position).split(";")[0]);
                 verset = Integer.valueOf(list.get(position).split(";")[1]);
+                SearchFragment.position = position;
                 if (chapitre!=chapitre0) mediaPlayer.pause();
                 getFragmentManager().popBackStack();
             }
