@@ -217,10 +217,4 @@ public class CentreActivity extends AppCompatActivity {
         }
     }
 
-    public void choisirRécitateur(MenuItem item) {
-        item.setChecked(true);
-        récitateur = item.getOrder();
-        if (récitateur!=récitateur0) mediaPlayer.pause();
-    }
-
 }

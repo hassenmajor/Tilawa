@@ -1,5 +1,6 @@
 package com.major.mahdara.ui;
 
+import android.graphics.Outline;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 
 import com.major.mahdara.R;
 
@@ -50,8 +52,18 @@ public class PersonFragment extends Fragment {
 
         views[récitateur-1].setBackgroundColor(getResources().getColor(R.color.couleurArriere, null));
 
-        for (int i=0; i<views.length; i++)
+        ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setOval((view.getWidth()-view.getHeight())/2, 0, (view.getWidth()+view.getHeight())/2, view.getHeight());
+            }
+        };
+
+        for (int i=0; i<views.length; i++) {
+            ((ViewGroup)views[i]).getChildAt(0).setOutlineProvider(viewOutlineProvider);
+            ((ViewGroup)views[i]).getChildAt(0).setClipToOutline(true);
             views[i].setOnClickListener(onClickListener);
+        }
 
         super.onViewCreated(view, savedInstanceState);
     }

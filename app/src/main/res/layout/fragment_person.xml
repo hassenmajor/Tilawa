@@ -18,80 +18,89 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur1"
                 android:tag="1"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_1" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur1"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_1" />
 
-            </TableLayout>
+            </RelativeLayout>
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur2"
                 android:tag="2"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_2" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur2"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_2" />
 
-            </TableLayout>
+            </RelativeLayout>
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur3"
                 android:tag="3"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_3" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur3"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_3" />
 
-            </TableLayout>
+            </RelativeLayout>
 
         </TableRow>
 
@@ -102,80 +111,89 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur4"
                 android:tag="4"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur4"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_4" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur4"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_4" />
 
-            </TableLayout>
+            </RelativeLayout>
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur5"
                 android:tag="5"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur5"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_5" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur5"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_5" />
 
-            </TableLayout>
+            </RelativeLayout>
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur6"
                 android:tag="6"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur6"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_6" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur6"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_6" />
 
-            </TableLayout>
+            </RelativeLayout>
 
         </TableRow>
 
@@ -186,50 +204,51 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TableLayout
+            <RelativeLayout
                 android:tag="1"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-            </TableLayout>
+            </RelativeLayout>
 
-            <TableLayout
+            <RelativeLayout
                 android:id="@+id/tableLecteur7"
                 android:tag="7"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@id/textLecteur7"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:src="@drawable/lecteur_7" />
 
                 <TextView
-                    android:layout_weight="3"
+                    android:id="@+id/textLecteur7"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/amiri_regular"
                     android:text="@string/lecteur_7" />
 
-            </TableLayout>
+            </RelativeLayout>
 
-            <TableLayout
+            <RelativeLayout
                 android:tag="1"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-            </TableLayout>
+            </RelativeLayout>
 
         </TableRow>
 
