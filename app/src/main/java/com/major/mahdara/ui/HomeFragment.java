@@ -241,10 +241,9 @@ public class HomeFragment extends Fragment {
         PendingIntent pendingIntent0 = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 0, new Intent(getActivity(), MyBroadcastReceiver.class), 0);
         builder = new NotificationCompat.Builder(getContext(), "channel_id")
                 .setContentTitle(titres[chapitre-1])
-                .setContentText(getString(R.string.note_text_prim))
-                .setSmallIcon(R.drawable.ic_mahdara)
+                .setContentText(getString(R.string.note_text))
+                .setSmallIcon(R.drawable.ic_quran)
                 .setStyle(new NotificationCompat.BigTextStyle())
-                //.addAction(new NotificationCompat.Action(0, "Stop", intent0))
                 .setContentIntent(pendingIntent)
                 .setDeleteIntent(pendingIntent0)
                 .setOngoing(false)

@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">Mahdara</string>
-    <string name="app_name_arabic">المحظرة</string>
+    <string name="app_name">TILAWA</string>
+    <string name="app_name_arabic">التلاوة</string>
     <string name="basmala">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</string>
     <string name="arkam">٠١٢٣٤٥٦٧٨٩</string>
     <string name="fatiha">
@@ -18,7 +18,6 @@
     <string name="sourate">السورة</string>
     <string name="ayat">آياتها</string>
     <string name="hizb">الجزء</string>
-    <string name="my_link">https://play.google.com/store/apps/dev?id=6030565463004791846</string>
     <string name="positive">التواصل معنا</string>
     <string name="neutral">تقييم أو تحديث التطبيق</string>
     <string name="negative">الرجوع</string>
@@ -42,7 +41,7 @@
     </string-array>
 
     <string name="help_text">
-        تطبيق المحظرة يختص بتوفير تلاوة القرآن الكريم بأصوات القراء من بلاد شنقيط. يحتوي على 7 مصاحف صوتية كاملة لأفضل القراء الموريتانيين برفقة النص مع خاصية حركة اللوح تزامنا مع الترتيل.
+        تطبيق التلاوة يختص بتوفير تلاوة القرآن الكريم بأصوات القراء من بلاد شنقيط. يحتوي على 7 مصاحف صوتية كاملة لأفضل القراء الموريتانيين برفقة النص مع خاصية حركة اللوح تزامنا مع الترتيل.
         \nيمكن استخدامه لقراءة القرآن الكريم والإستماع إليه.
         \nالنص الحالي برواية حفص بينما التلاوة بروايات مختلفة حسب القارئ.
         \nتقبل الله منا ومنكم صالح الأعمال.
@@ -51,7 +50,7 @@
         \n
     </string>
     <string name="cercle_bug">۟</string>
-    <string name="note_text">إضغط هنا لرؤية اللوح</string>
+    <string name="note_text">إضغط هنا لإظهار اللوح</string>
     <string name="note_text_prim">إمسح هنا لإيقاف التلاوة</string>
     <string name="exit_text">إضغط مجددا للخروج</string>
     <string name="yes_lawh">تفعيل حركة اللوح</string>
@@ -63,8 +62,5 @@
     <string name="title_person">قائمة القراء</string>
     <string name="title_list">قائمة السور</string>
     <string name="title_search">بحث</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

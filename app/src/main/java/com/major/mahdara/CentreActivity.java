@@ -97,7 +97,7 @@ public class CentreActivity extends AppCompatActivity {
                 .setNeutralButton(R.string.neutral,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dlg, int sumthin) {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.major.mahdara")));
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.amazon.com/gp/product/B0BW6KBYYV")));
                             }
                         })
                 .setNegativeButton(R.string.negative, null);
